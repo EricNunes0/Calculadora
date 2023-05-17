@@ -1,0 +1,915 @@
+/* Configurações da página */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* Corpo da calculadora */
+#calculator-body {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(180, 120, 180);
+    /*background-image: linear-gradient(45deg, rgb(0, 0, 0, 0) 0%, rgba(225, 200, 235, 0.8) 50%, rgb(0, 0, 0, 0) 100%);*/
+    background-image: linear-gradient(45deg, rgb(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgb(0, 0, 0, 0) 100%);
+    background-size: 300% 300%;
+    animation-name: calculatorBG;
+    animation-duration: 10s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes calculatorBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Container dos alertas da calculadora */
+.calculator-alert-containers {
+    width: 170px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 5px auto;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px;
+    transition: all 0.5s;
+}
+
+.calculator-alert-containers.closed {
+    opacity: 0;
+    transform: translateY(-60px);
+}
+
+.calculator-alert-containers:hover {
+    cursor: default;
+}
+
+/* Alinhar imagem e texto dos alertas */
+.calculator-alert-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Div das imagens dos alertas */
+.alert-image-div {
+    width: 30px;
+    height: 30px;
+}
+
+/* Imagens dos alertas */
+.alert-images {
+    width: 30px;
+    height: 30px;
+}
+
+/* Header da calculadora */
+.calculator-header {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Base da calculadora */
+.calculator-base {
+    height: 500px;
+    padding: 0px;
+    border: 1px solid rgba(100, 100, 100, 1);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+}
+
+.calculator-base.absolute {
+    position: absolute;
+}
+
+/* Temas da base da calculadora */
+.calculator-base-theme {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.calculator-base-theme.light {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.calculator-base-theme.dark {
+    background-color: rgba(35, 35, 35, 1);
+}
+
+/* Div do botão de histórico */
+.calculator-options-container {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Imagem do botão de histórico de contas */
+.config-buttons {
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-width: 0px;
+    border-radius: 50%;
+    margin: 4px;
+    transition: all 0.1s;
+}
+
+.config-buttons:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Imagens dos botões de configurações/histórico */
+.config-button-images {
+    width: 80%;
+    height: 80%;
+}
+
+/* Imagens dos botões de configurações/histórico (tema escuro) */
+.config-button-images.dark {
+    filter: invert(1);
+}
+
+/* Container dos cálculos/dígitos */
+.digits-container {
+    width: 100%;
+}
+
+/* Área dos dígitos */
+.digits-area {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin: 5px 0px;
+}
+
+/* Div das contas */
+.contas-div {
+    width: 280px;
+    height: 20px;
+    overflow: auto;
+    text-align: right;
+}
+
+/* Textos das contas (tema claro) */
+.contas.light {
+    color: rgb(100, 100, 100);
+}
+
+/* Textos das contas (tema escuro)*/
+.contas.dark {
+    color: rgb(200, 200, 200);
+}
+
+/* Div dos resultados */
+.result-div {
+    width: 280px;
+    height: 50px;
+    overflow: auto;
+}
+
+/* Textos dos resultados */
+.resultados {
+    font-size: 30pt;
+    text-align: right;
+}
+
+.resultados.light {
+    color: rgba(40, 40, 40, 1);
+}
+
+.resultados.dark {
+    color: rgba(255, 255, 255, 1);
+}
+
+/* Botões da calculadora */
+.calc-buttons {
+    width: 75px;
+    height: 60px;
+    border-radius: 4px;
+    font-size: 14pt;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px;
+    transition: all 0.1s;
+}
+
+.calc-buttons:hover {
+    cursor: pointer;
+    filter: brightness(0.97);
+}
+
+.calc-buttons:active {
+    filter: brightness(0.95);
+}
+
+/* Botões (tema claro) */
+.calc-buttons.light {
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(252, 252, 252, 1) 100%);
+    border: 1px solid rgba(220, 220, 220, 1);
+}
+
+.calc-buttons.dark {
+    color: #fff;
+    background-image: linear-gradient(180deg, rgba(50, 50, 50, 1) 0%, rgba(48, 48, 48, 1) 100%);
+    border: 1px solid rgba(30, 30, 30, 0.5);
+}
+
+/* Botões cinza claro */
+.calc-buttons.btn-gray-1.light {
+    background-image: linear-gradient(180deg, rgba(250, 250, 250, 1) 0%, rgba(248, 248, 248, 1) 100%);
+    border: 1px solid rgba(220, 220, 220, 1);
+}
+
+/* Botões cinza claro */
+.calc-buttons.btn-gray-1.dark {
+    color: #fff;
+    background-image: linear-gradient(180deg, rgba(45, 45, 45, 1) 0%, rgba(42, 42, 42, 1) 100%);
+    border: 1px solid rgba(30, 30, 30, 0.5);
+}
+
+/* Botões de igual */
+.calc-buttons#equal {
+    background-color: rgb(30, 90, 200);
+    background-image: linear-gradient(180deg, rgba(30, 90, 200, 1) 0%, rgba(28, 88, 198, 1) 100%);
+    color: #fff;
+}
+
+/* Aba de configurações */
+.calculator-config-bar {
+    width: 300px;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+    opacity: 1;
+    overflow: auto;
+    transition: all 0.2s;
+}
+
+/* Div com a cor dos temas da aba de configurações */
+.config-bar-theme {
+    width: 100%;
+    height: 100%;
+}
+
+/* Div com a cor dos temas (claro) */
+.config-bar-theme.light {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.config-bar-theme.dark {
+    background-color: rgba(32, 32, 32, 1);
+}
+
+/* Aba de configurações fechado */
+.calculator-config-bar.closed {
+    opacity: 0;
+    transform: translateX(150px);
+    z-index: -1;
+}
+
+/* Alinhar divs do título e botão de fechar aba de configurações */
+.config-bar-title-close-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Div do título da aba de configurações */
+.config-bar-title-div {
+    width: 100%;
+}
+
+/* Título da aba de configurações */
+.config-bar-titles {
+    padding: 10px 15px;
+}
+
+.config-bar-titles.light {
+    color: rgba(0, 0, 0, 1);
+}
+
+.config-bar-titles.dark {
+    color: rgba(255, 255, 255, 1);
+}
+
+/* Div do botão de fechar aba de configurações */
+.config-bar-close-div {
+    padding: 0 5px;
+}
+
+/* Botão X de fechar aba de configurações */
+.config-bar-close-button {
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-width: 0px;
+}
+
+.config-bar-close-button:hover {
+    cursor: pointer;
+}
+
+/* Imagem do botão X de fechar aba de configurações */
+.close-button-images {
+    width: 100%;
+    height: 100%;
+}
+
+/* Imagem do botão X de fechar aba de configurações (tema claro) */
+.close-button-images.light {
+    filter: invert(0.2);
+}
+
+/* Imagem do botão X de fechar aba de configurações (tema escuro) */
+.close-button-images.dark {
+    filter: invert(0.8);
+}
+
+/* Div do botão de tema */
+.theme-div {
+    width: 100%;
+}
+
+/* Alinhar botão e configurações de tema */
+.theme-button-config-flex {
+    width: 90%;
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Botão de tema */
+.theme-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.theme-buttons.light {
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(220, 220, 220, 1);
+}
+
+.theme-buttons.dark {
+    background-color: rgba(45, 45, 45, 1);
+    border-color: rgba(120, 120, 120, 1);
+}
+
+.theme-button:hover {
+    cursor: pointer;
+    filter: brightness(0.97);
+}
+
+/* Alinhar imagem e textos do botão de tema */
+.theme-image-texts-flex {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Div da imagem do botão de tema */
+.theme-image-div {
+    width: 20%;
+}
+
+/* Imagem de paleta de tema */
+.theme-images {
+    width: 20px;
+    height: 20px;
+}
+
+/* Imagem de paleta de tema (tema claro) */
+.theme-images.light {
+    filter: invert(0.8);
+}
+
+/* Imagem de paleta de tema (tema escuro) */
+.theme-images.dark {
+    filter: invert(0.2);
+}
+
+/* Div dos textos do botão de tema */
+.theme-texts-div {
+    width: 70%;
+}
+
+/* Título do tema */
+.theme-titles {
+    font-size: 10pt;
+    text-align: left;
+}
+
+/* Título do tema */
+.theme-titles.light {
+    color: rgba(0, 0, 0, 1);
+}
+
+/* Título do tema (escuro) */
+.theme-titles.dark {
+    color: rgba(255, 255, 255, 1);
+}
+
+/* Descrição do tema */
+.theme-description {
+    color: #808080;
+    font-size: 8pt;
+    text-align: left;
+}
+
+/* Div da seta do botão de tema */
+.theme-arrow-div {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Seta do botão de tema */
+.theme-arrows {
+    width: 11px;
+    height: 7px;
+}
+
+/* Seta do botão de tema (fechado) */
+.theme-arrows.closed {
+    transform: rotate(180deg);
+}
+
+/* Seta do botão de tema (tema claro) */
+.theme-arrows.light {
+    filter: invert(1);
+}
+
+/* Seta do botão de tema (tema escuro) */
+.theme-arrows.dark {
+    filter: invert(0);
+}
+
+/* Configurações de tema */
+.theme-configs {
+    width: 100%;
+    background-color: rgba(240, 240, 240, 1);
+    border-radius: 4px;
+}
+
+.theme-configs.closed {
+    display: none;
+}
+
+/* Divs dos botões de configurações de tema */
+.theme-config-button-divs {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Botão de abrir aba de trocar tema */
+.theme-buttons {
+    width: 100%;
+    height: 50px;
+    border-width: 0px;
+}
+
+.theme-buttons:hover {
+    cursor: pointer;
+    filter: brightness(0.97);
+}
+
+/* Botões de trocar temas */
+.theme-change-buttons {
+    width: 100%;
+    height: 30px;
+    border-width: 0px;
+}
+
+.theme-change-buttons:hover {
+    cursor: pointer;
+    filter: brightness(0.97);
+}
+
+.theme-change-buttons.light {
+    background-color: rgba(240, 240, 240, 1);
+    border: 1px solid rgba(200, 200, 200, 0);
+}
+
+.theme-change-buttons.dark {
+    background-color: rgba(50, 50, 50, 1);
+    color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Div do botão de cor de fundo */
+.background-div {
+    width: 100%;
+}
+
+/* Alinhar botão e configurações de cor */
+.bg-button-config-flex {
+    width: 90%;
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Botão de cor */
+.bg-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.bg-buttons.light {
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(220, 220, 220, 1);
+}
+
+.bg-buttons.dark {
+    background-color: rgba(45, 45, 45, 1);
+    border-color: rgba(120, 120, 120, 1);
+}
+
+.bg-button:hover {
+    cursor: pointer;
+    filter: brightness(0.97);
+}
+
+/* Alinhar imagem e textos do botão de cor */
+.bg-image-texts-flex {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Div da imagem do botão de cor */
+.bg-image-div {
+    width: 20%;
+}
+
+/* Imagem de paleta de cor */
+.bg-images {
+    width: 20px;
+    height: 20px;
+}
+
+/* Imagem de paleta de cor (tema claro) */
+.bg-images.light {
+    filter: invert(0.8);
+}
+
+/* Imagem de paleta de cor (tema escuro) */
+.bg-images.dark {
+    filter: invert(0.2);
+}
+
+/* Div dos textos do botão de tema */
+.bg-texts-div {
+    width: 70%;
+}
+
+/* Título do tema */
+.bg-titles {
+    font-size: 10pt;
+    text-align: left;
+}
+
+/* Título do tema */
+.bg-titles.light {
+    color: rgba(0, 0, 0, 1);
+}
+
+/* Título do tema (escuro) */
+.bg-titles.dark {
+    color: rgba(255, 255, 255, 1);
+}
+
+/* Descrição do tema */
+.bg-description {
+    color: #808080;
+    font-size: 8pt;
+    text-align: left;
+}
+
+/* Div da seta do botão de tema */
+.bg-arrow-div {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Seta do botão de tema */
+.bg-arrows {
+    width: 11px;
+    height: 7px;
+}
+
+/* Seta do botão de tema (fechado) */
+.bg-arrows.closed {
+    transform: rotate(180deg);
+}
+
+/* Seta do botão de tema (tema claro) */
+.bg-arrows.light {
+    filter: invert(1);
+}
+
+/* Seta do botão de tema (tema escuro) */
+.bg-arrows.dark {
+    filter: invert(0);
+}
+
+/* Configurações de tema */
+.bg-configs {
+    width: 100%;
+    background-color: transparent;
+    border-radius: 4px;
+}
+
+.bg-configs.closed {
+    display: none;
+}
+
+/* Divs dos botões de configurações de tema */
+.bg-config-button-divs {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Botão de abrir aba de trocar tema */
+.bg-buttons {
+    width: 100%;
+    height: 50px;
+    border-width: 0px;
+}
+
+.bg-buttons:hover {
+    cursor: pointer;
+    filter: brightness(0.97);
+}
+
+/* Botão de trocar cor */
+.bg-change-button {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.bg-change-button:hover {
+    cursor: pointer;
+    filter: brightness(0.95);
+}
+
+/* Inputs do tipo color */
+input[type="color"] {
+    appearance: none;
+	-webkit-appearance: none;
+    color: rgba(225, 200, 235, 1);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+    border-radius: 10px;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+    border-radius: 10px;
+}
+
+/* Aba do histórico de contas */
+.calculator-history-bar {
+    width: 300px;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+    opacity: 1;
+    overflow: auto;
+    transition: all 0.2s;
+}
+
+/* Aba do histórico de contas */
+.calculator-history-bar.closed {
+    opacity: 0;
+    transform: translateX(-150px);
+    z-index: -1;
+}
+
+.calculator-history-theme-bar {
+    width: 100%;
+    height: 100%;
+}
+
+.calculator-history-theme-bar.light {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.calculator-history-theme-bar.dark {
+    background-color: rgba(32, 32, 32, 1);
+}
+
+/* Div do botão de fechar histórico */
+.config-history-close-div {
+    padding: 5px 5px;
+}
+
+/* Área das contas e resultados do histórico */
+.history-bar-texts {
+    width: 100%;
+    height: 60px;
+    padding: 0 0;
+}
+
+/* Botões das contas do histórico */
+.history-bar-buttons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: transparent;
+    border-width: 0px;
+}
+
+.history-bar-buttons:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+}
+
+.history-bar-buttons.light {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+.history-bar-buttons.dark {
+    background-color: rgba(32, 32, 32, 1);
+}
+
+/* Div dos textos das contas no histórico */
+.bar-contas-div {
+    overflow: auto;
+}
+
+/* Textos das contas no histórico */
+.bar-contas {
+    white-space: nowrap;
+    margin-right: 10px;
+    font-size: 12pt;
+}
+
+/* Textos das contas no histórico (tema claro) */
+.bar-contas.light {
+    color: rgba(100, 100, 100, 1);
+}
+
+/* Textos das contas no histórico (tema escuro) */
+.bar-contas.dark {
+    color: rgba(180, 180, 180, 1);
+}
+
+/* Textos dos resultados no histórico */
+.bar-resultados {
+    margin-right: 10px;
+    font-size: 18pt;
+}
+
+/* Textos dos resultados no histórico (tema claro) */
+.bar-resultados.light {
+    color: rgba(0, 0, 0, 1);
+}
+
+/* Textos dos resultados no histórico (tema escuro) */
+.bar-resultados.dark {
+    color: rgba(255, 255, 255, 1);
+}
+
+/* Div do texto de quem criou */
+.calculator-createdby-div {
+    background-color: rgba(40, 40, 40, 1);
+    padding: 18px 0;
+}
+
+/* Texto de quem criou */
+.createdby {
+    color: #fff;
+    text-align: center;
+    font-size: 16pt;
+}
+
+/* Link do portfolio */
+.createdby-link {
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 1);
+}
+
+.createdby-link:hover {
+    color: rgb(240, 240, 240);
+    transform: scale(1.02);
+}
+
+/* Barra de scroll */
+::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+    background-color: transparent;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color:rgba(200, 100, 250);
+    border-radius: 3px;
+}
+
+@media screen and (max-width: 920px) {
+    .calculator-base {
+        position: absolute;
+        z-index: 1;
+    }
+
+    .calculator-config-bar {
+        position: absolute;
+        z-index: 2;
+        width: 308px;
+        height: 500px;
+    }
+
+    .calculator-config-bar.closed {
+        opacity: 1;
+        transform: translateX(0px);
+        z-index: 1;
+    }
+
+    .calculator-history-bar {
+        position: absolute;
+        z-index: 2;
+        width: 308px;
+        height: 500px;
+    }
+
+    .calculator-history-bar.closed {
+        opacity: 1;
+        transform: translateX(0px);
+        z-index: 0;
+    }
+}

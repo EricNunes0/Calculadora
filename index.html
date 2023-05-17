@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang = "pt-br">
+<head>
+    <meta charset = "UTF-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel = "stylesheet" type = "text/css" href = "index.css">
+    <link rel = "icon" href = "https://i.imgur.com/1MI0yjp.png">
+</head>
+<body id = "calculator-body">
+    <span class = "themes light" id = "theme"></span>
+    <div class = "calculator-alert-containers closed" id = "alert-saved-account">
+        <div class = "calculator-alert-flex">
+            <div class = "alert-image-div">
+                <img class = "alert-images" src = "https://icons.iconarchive.com/icons/microsoft/fluentui-emoji-flat/256/Check-Mark-Button-Flat-icon.png">
+            </div>
+            <div class = "alert-text-div">
+                <span>Operação salva!</span>
+            </div>
+        </div>
+    </div>
+    <div class = "calculator-header">
+        <div class = "calculator-config-bar closed" id = "config-bar">
+            <div class = "config-bar-theme light" id = "config-bar-theme">
+                <div class = "config-bar-title-close-flex">
+                    <div class = "config-bar-title-div">
+                        <h3 class = "config-bar-titles" id = "config-bar-title">Configurações</h3>
+                    </div>
+                    <div class = "config-bar-close-div">
+                        <button class = "config-bar-close-button">
+                            <img class = "close-button-images light" id = "close-image-config" src = "https://i.imgur.com/xayZ6Kn.png" onclick = "configOpen()">
+                        </button>
+                    </div>
+                </div>
+                <div class = "theme-div">
+                    <div class = "theme-button-config-flex">
+                        <button type = "button" class = "theme-buttons light" id = "theme-button" onclick = "themeBar()">
+                            <div class = "theme-image-texts-flex">
+                                <div class = "theme-image-div">
+                                    <img class = "theme-images light" id = "theme-image" src = "https://i.imgur.com/EFjsg8D.png">
+                                </div>
+                                <div class = "theme-texts-div">
+                                    <div class = "theme-title-div">
+                                        <p class = "theme-titles" id = "theme-title">Tema da calculadora</p>
+                                    </div>
+                                    <div class = "theme-description-div">
+                                        <p class = "theme-description">Selecione o tema da calculadora a ser exibido</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "theme-arrow-div">
+                                <img class = "theme-arrows closed light" id = "theme-arrow" src = "https://i.imgur.com/nN1rks7.png">
+                            </div>
+                        </button>
+                        <div class = "theme-configs closed" id = "theme-config">
+                            <div class = "theme-config-button-divs">
+                                <button class = "theme-change-buttons light" id = "light-button" onclick = "themeSelect('light')">Claro</button>
+                            </div>
+                            <div class = "theme-config-button-divs">
+                                <button class = "theme-change-buttons light" id = "dark-button" onclick = "themeSelect('dark')">Escuro</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class = "background-div">
+                    <div class = "bg-button-config-flex">
+                        <button type = "button" class = "bg-buttons light" id = "bg-button" onclick = "backgroundBar()">
+                            <div class = "bg-image-texts-flex">
+                                <div class = "bg-image-div">
+                                    <img class = "bg-images light" id = "bg-image" src = "https://i.imgur.com/416g7pe.png">
+                                </div>
+                                <div class = "bg-texts-div">
+                                    <div class = "bg-title-div">
+                                        <p class = "bg-titles" id = "bg-title">Cor de fundo</p>
+                                    </div>
+                                    <div class = "bg-description-div">
+                                        <p class = "bg-description">Selecione a cor de fundo a ser exibida</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "bg-arrow-div">
+                                <img class = "bg-arrows closed light" id = "bg-arrow" src = "https://i.imgur.com/nN1rks7.png">
+                            </div>
+                        </button>
+                        <div class = "bg-configs closed" id = "bg-config">
+                            <div class = "bg-config-button-divs">
+                                <input type = "color" class = "bg-change-button" id = "bg-color-button" value = "#965096">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class = "calculator-base absolute" id = "calc-base">
+            <div class = "calculator-base-theme light" id = "calculator-base-theme">
+                <div class = "calculator-options-container">
+                    <div class = "config-button-div">
+                        <button class = "config-buttons" onclick = "configOpen()">
+                            <img class = "config-button-images light" src = "https://i.imgur.com/qxK1bMw.png">
+                        </button>
+                    </div>
+                    <div class = "config-button-div">
+                        <button class = "config-buttons" onclick = "historyOpen()">
+                            <img class = "config-button-images light" src = "https://i.imgur.com/Y5LfJcn.png">
+                        </button>
+                    </div>
+                </div>
+                <div class = "digits-container">
+                    <div class = "digits-area">
+                        <div class = "contas-div">
+                            <p class = "contas light" id = "conta"></p>
+                        </div>
+                        <div class = "result-div">
+                            <p class = "resultados light" id = "resultado">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class = "buttons-container">
+                    <table>
+                        <tr>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons btn-gray-1 light" onclick = "addOperator('÷ 100 ×')">%</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons btn-gray-1 light" onclick = "cleanResult()">CE</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons btn-gray-1 light" onclick = "cleanAll()">C</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons btn-gray-1 light" id = "x" onclick = "removeNumberDigit()">X</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons btn-gray-1 light" id = "calc-button-fraction-num" onclick = "fractionNumerator()">⅟</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons btn-gray-1 light" id = "calc-button-fraction-exp" onclick = "addOperator('^')">x²</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons btn-gray-1 light" id = "calc-button-fraction-raiz" onclick = "raiz()">²√x</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons btn-gray-1 light" id = "calc-button-div" onclick = "addOperator('÷')">÷</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "calc-button-7" onclick = "addNumberDigit(7)">7</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "calc-button-8" onclick = "addNumberDigit(8)">8</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "calc-button-9" onclick = "addNumberDigit(9)">9</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons btn-gray-1 light" id = "calc-button-mult" onclick = "addOperator('×')">×</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "calc-button-4" onclick = "addNumberDigit(4)">4</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "calc-button-5" onclick = "addNumberDigit(5)">5</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "calc-button-6" onclick = "addNumberDigit(6)">6</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons btn-gray-1 light" id = "calc-button-sub" onclick = "addOperator('-')">-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "calc-button-1" onclick = "addNumberDigit(1)">1</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "calc-button-2" onclick = "addNumberDigit(2)">2</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "calc-button-3" onclick = "addNumberDigit(3)">3</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons btn-gray-1 light" id = "calc-button-sum" onclick = "addOperator('+')">+</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "calc-button-invert" onclick = "invertSign()">+/-</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "calc-button-0" onclick = "addNumberDigit(0)">0</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "calc-button-dot" onclick = "addNumberDigit('.')">,</button>
+                            </td>
+                            <td class = "td-buttons">
+                                <button type = "button" class = "calc-buttons light" id = "equal" onclick = "calculate()">=</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class = "calculator-history-bar closed" id = "history-bar">
+            <div class = "calculator-history-theme-bar light" id = "history-theme-bar">
+                <div class = "config-history-close-div">
+                    <button class = "config-bar-close-button">
+                        <img class = "close-button-images light" id = "close-image-history" src = "https://i.imgur.com/xayZ6Kn.png" onclick = "historyOpen()">
+                    </button>
+                </div>
+                <div id = "operations"></div>
+            </div>
+        </div>
+    </div>
+    <footer class = "calculator-footer">
+        <div class = "calculator-createdby-div">
+            <p class = "createdby">Criado por 
+                <a class = "createdby-link" href = "https://portfolio-eric-nunes.vercel.app/" target = "_blank">Eric Nunes</a>
+            </p>
+        </div>
+    </footer>
+    <script type = "text/javascript" src = "calculator.js"></script>
+    <script type = "text/javascript" src = "config.js"></script>
+    <script type = "text/javascript" src = "history.js"></script>
+    <script type = "text/javascript" src = "theme.js"></script>
+    <script type = "text/javascript" src = "background.js"></script>
+</body>
+</html>
